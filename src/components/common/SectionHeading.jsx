@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Badge from './Badge';
 
 export default function SectionHeading({
@@ -12,7 +13,13 @@ export default function SectionHeading({
   const isCenter = align === 'center';
 
   return (
-    <div className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-3xl' : 'max-w-2xl'} ${className}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-3xl' : 'max-w-2xl'} ${className}`}
+    >
       {eyebrow && (
         <div className={`mb-4 ${isCenter ? 'flex justify-center' : ''}`}>
           <Badge variant="gold">{eyebrow}</Badge>
@@ -35,6 +42,6 @@ export default function SectionHeading({
           {subtitle}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 }
