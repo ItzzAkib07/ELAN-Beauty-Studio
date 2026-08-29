@@ -37,9 +37,9 @@ export default function MakeupGallery({ initialCategory = 'all', limit, showFilt
 
   return (
     <div className="space-y-10">
-      {/* Category Filter Tabs */}
+      {/* Category Filter Tabs (2 rows x 3 columns on mobile, fluid pill row on sm+) */}
       {showFilter && (
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 w-full max-w-lg mx-auto sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
           {makeupCategories.map((cat) => {
             const isActive = selectedCategory === cat.id;
 
@@ -48,9 +48,9 @@ export default function MakeupGallery({ initialCategory = 'all', limit, showFilt
                 key={cat.id}
                 type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 sm:px-5 py-2 text-xs uppercase tracking-widest rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] ${
+                className={`w-full sm:w-auto min-h-[38px] sm:min-h-0 px-2 sm:px-5 py-2 text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest rounded-xl sm:rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] flex items-center justify-center text-center leading-tight ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#E5C590] via-[#C5A880] to-[#A88758] text-[#14100E] font-semibold shadow-[0_0_15px_rgba(197,168,128,0.3)] scale-105'
+                    ? 'bg-gradient-to-r from-[#E5C590] via-[#C5A880] to-[#A88758] text-[#14100E] font-semibold shadow-[0_0_15px_rgba(197,168,128,0.3)] scale-[1.02] sm:scale-105'
                     : 'bg-[#1E1815] text-[#CFC0A8] border border-[#C5A880]/20 hover:border-[#C5A880]/50 hover:text-[#FDFBF7]'
                 }`}
               >

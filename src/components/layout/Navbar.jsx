@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { Menu, X, Phone, Calendar, Sparkles } from 'lucide-react';
 import { WhatsAppIcon } from '../common/SocialIcons';
 import { navLinks } from '../../data/navigation';
@@ -9,26 +9,20 @@ import Button from '../common/Button';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Scroll detection for navbar blur and progress bar
+  // Instantaneous, GPU-accelerated scroll tracking with 0ms lag
+  const { scrollYProgress, scrollY } = useScroll();
+
+  // Scroll detection for navbar background blur
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 15);
-
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((currentScrollY / totalHeight) * 100);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const unsubscribe = scrollY.on('change', (latest) => {
+      setIsScrolled(latest > 15);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   // Close mobile drawer on route change
   useEffect(() => {
@@ -169,10 +163,10 @@ export default function Navbar() {
         </div>
 
         {/* Top Scroll Progress Indicator */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C5A880]/10 pointer-events-none">
-          <div
-            className="h-full bg-gradient-to-r from-[#E5C590] via-[#C5A880] to-[#A88758] transition-all duration-150"
-            style={{ width: `${scrollProgress}%` }}
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C5A880]/15 pointer-events-none overflow-hidden">
+          <motion.div
+            className="h-full w-full origin-left bg-gradient-to-r from-[#E5C590] via-[#C5A880] to-[#A88758]"
+            style={{ scaleX: scrollYProgress }}
           />
         </div>
       </header>

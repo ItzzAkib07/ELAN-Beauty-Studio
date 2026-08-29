@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, CheckCircle2, ArrowRight, Award, ShieldCheck, HeartHandshake } from 'lucide-react';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../common/Button';
-import portraitImg from '../../assets/images/artist-portrait-sakshi.jpg';
+import portraitImg from '../../assets/images/artist-portrait-sakshi.jpeg';
 import { siteConfig } from '../../config/siteConfig';
 
 export default function AboutIntro({ showFullDetails = false }) {

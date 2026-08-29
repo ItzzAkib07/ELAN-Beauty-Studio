@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ArrowUp, Sparkles, Award } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ArrowUp, Sparkles, Award, Heart } from 'lucide-react';
 import { InstagramIcon, FacebookIcon, WhatsAppIcon } from '../common/SocialIcons';
 import { siteConfig } from '../../config/siteConfig';
 import { footerLinks } from '../../data/navigation';
@@ -150,13 +150,36 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A8A19A]">
-          <p>© {new Date().getFullYear()} {siteConfig.businessName}. All rights reserved. Professional Makeup Artist · Beauty Specialist · Salon Manager.</p>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-[#A8A19A]">
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} {siteConfig.businessName}. All rights reserved.
+          </p>
+
+          {/* Crafted with love by Akib credit badge */}
+          <a
+            href={siteConfig.developer.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#181210] border border-[#C5A880]/25 hover:border-[#E5C590]/60 text-[#CFC0A8] hover:text-[#FDFBF7] transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(197,168,128,0.25)] hover:scale-[1.03]"
+            aria-label="Developer Portfolio: Akib"
+          >
+            <span className="text-[11px] tracking-wider text-[#A8A19A] group-hover:text-[#CFC0A8] transition-colors">
+              Crafted with
+            </span>
+            <Heart className="w-3.5 h-3.5 text-[#E5C590] fill-[#E5C590] group-hover:scale-125 transition-transform duration-300 animate-pulse" />
+            <span className="text-[11px] tracking-wider text-[#A8A19A] group-hover:text-[#CFC0A8] transition-colors">
+              by
+            </span>
+            <span className="text-[11px] font-semibold text-[#E5C590] group-hover:text-[#FDFBF7] transition-colors underline decoration-[#C5A880]/40 group-hover:decoration-[#E5C590] underline-offset-2">
+              Akib
+            </span>
+            <Sparkles className="w-3 h-3 text-[#E5C590] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </a>
 
           <button
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#C5A880] hover:text-[#E5C590] transition-colors py-1 px-3 rounded bg-[#1A1412] border border-[#C5A880]/20"
+            className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#C5A880] hover:text-[#E5C590] transition-colors py-1 px-3 rounded bg-[#1A1412] border border-[#C5A880]/20 hover:border-[#C5A880]/50 hover:bg-[#251B17]"
           >
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />

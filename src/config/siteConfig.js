@@ -10,10 +10,10 @@ export const siteConfig = {
   
   // Real details from resume
   location: "Pune, Maharashtra 411014, India",
-  phone: "+91 7415521971",
-  displayPhone: "+91 74155 21971",
+  phone: "+91 6260038553",
+  displayPhone: "+91 62600 38553",
   email: "shanaya333choudhry@gmail.com",
-  whatsapp: "+917415521971",
+  whatsapp: "+916260038553",
   
   // Areas served & key branches from experience
   operationalAreas: ["Baner", "Aundh", "Koregaon Park", "Viman Nagar", "Kalyani Nagar", "Pune Metro"],
@@ -28,10 +28,17 @@ export const siteConfig = {
 
   // Social & Digital Presence
   socialLinks: {
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
-    whatsapp: "https://wa.me/917415521971",
+    instagram: "https://www.instagram.com/sakshichoudhry223/",
+    facebook: "https://www.facebook.com/lovy.choudhry.54/",
+    whatsapp: "https://wa.me/916260038553",
     linkedin: "https://linkedin.com",
+  },
+
+  // Developer / Creator Credits
+  developer: {
+    name: "Akib",
+    url: "https://dezifolio.netlify.app/",
+    label: "Crafted with love by Akib"
   },
 
   workingHours: {
