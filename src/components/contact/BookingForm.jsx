@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import confetti from 'canvas-confetti';
-import { Send, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, RefreshCw, ChevronDown, Calendar, Clock } from 'lucide-react';
 import Button from '../common/Button';
 import { Reveal } from '../animations/Reveal';
 
@@ -145,7 +145,7 @@ export default function BookingForm() {
         )}
 
         {/* Full Name */}
-        <div>
+        <div className="w-full">
           <label htmlFor="fullName" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
             Full Name <span className="text-red-400">*</span>
           </label>
@@ -158,7 +158,7 @@ export default function BookingForm() {
               minLength: { value: 2, message: 'Name must be at least 2 characters' },
               maxLength: { value: 60, message: 'Name cannot exceed 60 characters' }
             })}
-            className={`w-full px-4 py-3 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
+            className={`w-full h-12 px-4 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
               errors.fullName
                 ? 'border-red-500/60 focus:border-red-500'
                 : 'border-[#C5A880]/30 focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590]'
@@ -170,8 +170,8 @@ export default function BookingForm() {
         </div>
 
         {/* Email & Phone Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+          <div className="w-full">
             <label htmlFor="email" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
               Email Address <span className="text-red-400">*</span>
             </label>
@@ -186,7 +186,7 @@ export default function BookingForm() {
                   message: 'Invalid email address format'
                 }
               })}
-              className={`w-full px-4 py-3 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
+              className={`w-full h-12 px-4 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
                 errors.email
                   ? 'border-red-500/60 focus:border-red-500'
                   : 'border-[#C5A880]/30 focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590]'
@@ -197,7 +197,7 @@ export default function BookingForm() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <label htmlFor="phone" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
               Phone / WhatsApp <span className="text-red-400">*</span>
             </label>
@@ -212,7 +212,7 @@ export default function BookingForm() {
                   message: 'Please enter a valid phone number'
                 }
               })}
-              className={`w-full px-4 py-3 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
+              className={`w-full h-12 px-4 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none transition-colors ${
                 errors.phone
                   ? 'border-red-500/60 focus:border-red-500'
                   : 'border-[#C5A880]/30 focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590]'
@@ -225,27 +225,30 @@ export default function BookingForm() {
         </div>
 
         {/* Service Selection */}
-        <div>
+        <div className="w-full">
           <label htmlFor="service" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
             Select Service <span className="text-red-400">*</span>
           </label>
-          <select
-            id="service"
-            {...register('service', { required: 'Please select a service' })}
-            className="w-full px-4 py-3 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] focus:outline-none focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590] transition-colors"
-          >
-            <option value="Bridal Makeup Artistry">Bridal Makeup Artistry (Weddings & Receptions)</option>
-            <option value="Party & Occasion Glam">Party & Occasion Glam (Sangeet, Cocktails, Engagements)</option>
-            <option value="Editorial & High Fashion Artistry">Editorial & High Fashion Artistry</option>
-            <option value="Professional Hair Styling">Professional Hair Styling & Draping</option>
-            <option value="Bespoke Beauty Consultation">Bespoke Beauty & Skin Consultation</option>
-            <option value="Salon Operations & Management Consulting">Salon Operations Consulting (For Salon Owners)</option>
-          </select>
+          <div className="relative w-full">
+            <select
+              id="service"
+              {...register('service', { required: 'Please select a service' })}
+              className="w-full h-12 pl-4 pr-10 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] focus:outline-none focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590] transition-colors appearance-none cursor-pointer"
+            >
+              <option value="Bridal Makeup Artistry">Bridal Makeup Artistry (Weddings & Receptions)</option>
+              <option value="Party & Occasion Glam">Party & Occasion Glam (Sangeet, Cocktails, Engagements)</option>
+              <option value="Editorial & High Fashion Artistry">Editorial & High Fashion Artistry</option>
+              <option value="Professional Hair Styling">Professional Hair Styling & Draping</option>
+              <option value="Bespoke Beauty Consultation">Bespoke Beauty & Skin Consultation</option>
+              <option value="Salon Operations & Management Consulting">Salon Operations Consulting (For Salon Owners)</option>
+            </select>
+            <ChevronDown className="w-4 h-4 text-[#C5A880] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
         </div>
 
-        {/* Date & Time Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
+        {/* Date & Time Grid - Strictly 100% full width and identical height */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+          <div className="w-full">
             <label htmlFor="preferredDate" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
               Preferred Date <span className="text-red-400">*</span>
             </label>
@@ -253,7 +256,7 @@ export default function BookingForm() {
               id="preferredDate"
               type="date"
               {...register('preferredDate', { required: 'Please select a date' })}
-              className={`w-full px-4 py-3 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] focus:outline-none transition-colors ${
+              className={`block w-full min-w-full h-12 px-4 bg-[#14100E] border rounded-sm text-sm text-[#FDFBF7] [color-scheme:dark] focus:outline-none transition-colors cursor-pointer [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-80 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert ${
                 errors.preferredDate
                   ? 'border-red-500/60 focus:border-red-500'
                   : 'border-[#C5A880]/30 focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590]'
@@ -264,26 +267,29 @@ export default function BookingForm() {
             )}
           </div>
 
-          <div>
+          <div className="w-full">
             <label htmlFor="preferredTime" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
               Preferred Time Slot
             </label>
-            <select
-              id="preferredTime"
-              {...register('preferredTime')}
-              className="w-full px-4 py-3 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] focus:outline-none focus:border-[#E5C590] transition-colors"
-            >
-              <option value="09:00 AM">09:00 AM (Early Morning / Bridal)</option>
-              <option value="11:00 AM">11:00 AM (Morning Slot)</option>
-              <option value="02:00 PM">02:00 PM (Afternoon Slot)</option>
-              <option value="04:30 PM">04:30 PM (Evening Glam)</option>
-              <option value="06:30 PM">06:30 PM (Reception / Gala Slot)</option>
-            </select>
+            <div className="relative w-full">
+              <select
+                id="preferredTime"
+                {...register('preferredTime')}
+                className="w-full h-12 pl-4 pr-10 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] focus:outline-none focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590] transition-colors appearance-none cursor-pointer"
+              >
+                <option value="09:00 AM">09:00 AM (Early Morning / Bridal)</option>
+                <option value="11:00 AM">11:00 AM (Morning Slot)</option>
+                <option value="02:00 PM">02:00 PM (Afternoon Slot)</option>
+                <option value="04:30 PM">04:30 PM (Evening Glam)</option>
+                <option value="06:30 PM">06:30 PM (Reception / Gala Slot)</option>
+              </select>
+              <ChevronDown className="w-4 h-4 text-[#C5A880] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
           </div>
         </div>
 
         {/* Message */}
-        <div>
+        <div className="w-full">
           <label htmlFor="message" className="block text-xs uppercase tracking-wider text-[#E5C590] font-medium mb-1.5">
             Occasion Details / Specific Requests
           </label>
@@ -294,7 +300,7 @@ export default function BookingForm() {
             {...register('message', {
               maxLength: { value: 500, message: 'Message cannot exceed 500 characters' }
             })}
-            className="w-full px-4 py-3 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590] transition-colors"
+            className="w-full p-4 bg-[#14100E] border border-[#C5A880]/30 rounded-sm text-sm text-[#FDFBF7] placeholder-[#736B65] focus:outline-none focus:border-[#E5C590] focus:ring-1 focus:ring-[#E5C590] transition-colors"
           />
           {errors.message && (
             <p className="text-[11px] text-red-400 mt-1">{errors.message.message}</p>
@@ -302,7 +308,7 @@ export default function BookingForm() {
         </div>
 
         {/* Submit Button */}
-        <div className="pt-2">
+        <div className="pt-2 w-full">
           <Button
             type="submit"
             variant="primary"
