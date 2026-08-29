@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, Briefcase, Users, TrendingUp, CheckCircle2 } from 'lucide-react';
 import { competencies } from '../../data/experience';
+import { StaggerContainer, StaggerItem } from '../animations/Reveal';
 
 const iconMap = {
   Sparkles: Sparkles,
@@ -11,14 +12,16 @@ const iconMap = {
 
 export default function CompetencyMatrix() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+    <StaggerContainer staggerChildren={0.12} className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
       {competencies.map((comp) => {
         const IconComponent = iconMap[comp.icon] || Sparkles;
 
         return (
-          <div
+          <StaggerItem
             key={comp.category}
-            className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/20 hover:border-[#C5A880]/50 transition-all duration-300 shadow-lg group"
+            direction="up"
+            distance={25}
+            className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/20 hover:border-[#C5A880]/50 hover:-translate-y-1.5 transition-all duration-300 shadow-lg group"
           >
             <div className="flex items-center gap-3.5 mb-4">
               <div className="w-10 h-10 rounded-full bg-[#C5A880]/15 border border-[#C5A880]/30 flex items-center justify-center text-[#E5C590] group-hover:scale-110 transition-transform">
@@ -43,9 +46,9 @@ export default function CompetencyMatrix() {
                 </div>
               ))}
             </div>
-          </div>
+          </StaggerItem>
         );
       })}
-    </div>
+    </StaggerContainer>
   );
 }

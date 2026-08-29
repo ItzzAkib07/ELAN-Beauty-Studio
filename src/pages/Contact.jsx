@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown, MapPin, Sparkles, MessageCircle, Phone, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import SEO from '../seo/SEO';
 import { getSalonSchema, getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
 import BookingForm from '../components/contact/BookingForm';
 import ContactInfo from '../components/contact/ContactInfo';
 import { faqsList } from '../data/faq';
-import { siteConfig } from '../config/siteConfig';
+import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
 
 export default function Contact() {
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
@@ -33,15 +33,21 @@ export default function Contact() {
       {/* Page Hero Header */}
       <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-            Appointments & Inquiries
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-            Book an Appointment
-          </h1>
-          <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-            Reserve your bespoke beauty session or salon operations consultation in Pune.
-          </p>
+          <Reveal direction="down" distance={15}>
+            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
+              Appointments & Inquiries
+            </span>
+          </Reveal>
+          <Reveal direction="up" delay={0.1} distance={25}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
+              Book an Appointment
+            </h1>
+          </Reveal>
+          <Reveal direction="up" delay={0.2} distance={20}>
+            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
+              Reserve your bespoke beauty session or salon operations consultation in Pune.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -71,14 +77,16 @@ export default function Contact() {
             subtitle="Clear answers on scheduling, venue travel, cosmetics brands, and bridal trials."
           />
 
-          <div className="space-y-4">
+          <StaggerContainer staggerChildren={0.08} className="space-y-4">
             {faqsList.map((faq, index) => {
               const isOpen = openFaqIndex === index;
 
               return (
-                <div
+                <StaggerItem
                   key={faq.question}
-                  className="rounded-sm border border-[#C5A880]/20 bg-[#1A1412] overflow-hidden"
+                  direction="up"
+                  distance={15}
+                  className="rounded-sm border border-[#C5A880]/20 bg-[#1A1412] overflow-hidden transition-colors hover:border-[#C5A880]/40 shadow-md"
                 >
                   <button
                     type="button"
@@ -96,21 +104,25 @@ export default function Contact() {
                     />
                   </button>
 
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-[#CFC0A8] font-light leading-relaxed border-t border-[#C5A880]/10 pt-4"
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: luxuryEase }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-[#CFC0A8] font-light leading-relaxed border-t border-[#C5A880]/10 pt-4">
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
     </>

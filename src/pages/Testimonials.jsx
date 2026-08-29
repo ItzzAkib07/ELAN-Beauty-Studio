@@ -1,10 +1,11 @@
 import React from 'react';
-import { Star, Quote, Sparkles, Heart } from 'lucide-react';
+import { Star } from 'lucide-react';
 import SEO from '../seo/SEO';
 import { getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
 import TestimonialCarousel from '../components/testimonials/TestimonialCarousel';
 import { testimonialsList } from '../data/testimonials';
+import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
 
 export default function Testimonials() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -24,15 +25,21 @@ export default function Testimonials() {
       {/* Page Hero Header */}
       <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-            Client Words & Experiences
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-            Testimonials
-          </h1>
-          <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-            Heartfelt words from brides and clients who trusted Sakshi Choudhry with their special celebrations.
-          </p>
+          <Reveal direction="down" distance={15}>
+            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
+              Client Words & Experiences
+            </span>
+          </Reveal>
+          <Reveal direction="up" delay={0.1} distance={25}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
+              Testimonials
+            </h1>
+          </Reveal>
+          <Reveal direction="up" delay={0.2} distance={20}>
+            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
+              Heartfelt words from brides and clients who trusted Sakshi Choudhry with their special celebrations.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -57,11 +64,13 @@ export default function Testimonials() {
             subtitle="Every review reflects our dedication to skin prep, personalized beauty, and seamless client care."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <StaggerContainer staggerChildren={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonialsList.map((test) => (
-              <div
+              <StaggerItem
                 key={test.id}
-                className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/20 hover:border-[#C5A880]/50 transition-all flex flex-col justify-between shadow-lg"
+                direction="up"
+                distance={25}
+                className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/20 hover:border-[#C5A880]/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between shadow-lg"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -89,9 +98,9 @@ export default function Testimonials() {
                   </div>
                   <span className="text-[11px] text-[#C5A880]">{test.date}</span>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
     </>

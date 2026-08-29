@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, CheckCircle2, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import SEO from '../seo/SEO';
 import { getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
@@ -8,6 +8,7 @@ import SignatureLook from '../components/makeup/SignatureLook';
 import BeforeAfterSlider from '../components/common/BeforeAfterSlider';
 import { transformationData } from '../data/makeup';
 import Button from '../components/common/Button';
+import { Reveal } from '../components/animations/Reveal';
 
 export default function Makeup() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -27,15 +28,21 @@ export default function Makeup() {
       {/* Page Hero Header */}
       <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-            Signature Visual Masterclass
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-            My Makeup
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-[#CFC0A8] font-light max-w-2xl mx-auto">
-            Every face is different. Every look begins with understanding what makes you uniquely beautiful.
-          </p>
+          <Reveal direction="down" distance={15}>
+            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
+              Signature Visual Masterclass
+            </span>
+          </Reveal>
+          <Reveal direction="up" delay={0.1} distance={25}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
+              My Makeup
+            </h1>
+          </Reveal>
+          <Reveal direction="up" delay={0.2} distance={20}>
+            <p className="text-sm sm:text-base md:text-lg text-[#CFC0A8] font-light max-w-2xl mx-auto">
+              Every face is different. Every look begins with understanding what makes you uniquely beautiful.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -61,17 +68,17 @@ export default function Makeup() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
-            <div className="lg:col-span-8">
+            <Reveal direction="right" distance={30} className="lg:col-span-8">
               <BeforeAfterSlider
                 beforeImage={transformationData.beforeImage}
                 afterImage={transformationData.afterImage}
                 beforeLabel={transformationData.beforeLabel}
                 afterLabel={transformationData.afterLabel}
               />
-            </div>
+            </Reveal>
 
-            <div className="lg:col-span-4 space-y-6">
-              <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 space-y-4">
+            <Reveal direction="left" distance={30} delay={0.15} className="lg:col-span-4 space-y-6">
+              <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 space-y-4 shadow-xl">
                 <span className="text-xs uppercase tracking-widest text-[#C5A880] font-semibold block">
                   Artistry Standards
                 </span>
@@ -108,7 +115,7 @@ export default function Makeup() {
                   </Button>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

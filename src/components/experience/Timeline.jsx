@@ -1,38 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Calendar, CheckCircle, Sparkles, Building2 } from 'lucide-react';
+import { MapPin, Calendar, Building2 } from 'lucide-react';
 import { careerTimeline } from '../../data/experience';
 import Badge from '../common/Badge';
+import { luxuryEase } from '../animations/Reveal';
 
 export default function Timeline() {
   return (
     <div className="relative max-w-5xl mx-auto py-8">
-      {/* Central Vertical Timeline Gold Line */}
-      <div className="absolute top-0 bottom-0 left-4 md:left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#E5C590] via-[#C5A880]/40 to-[#14100E] pointer-events-none" />
+      {/* Central Vertical Timeline Gold Line with Gradient Glow */}
+      <motion.div
+        initial={{ scaleY: 0, originY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.4, ease: luxuryEase }}
+        className="absolute top-0 bottom-0 left-4 md:left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#E5C590] via-[#C5A880]/60 to-[#14100E] pointer-events-none"
+      />
 
       <div className="space-y-12 md:space-y-16">
         {careerTimeline.map((item, index) => {
           const isEven = index % 2 === 0;
 
           return (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`relative flex flex-col md:flex-row items-start ${
                 isEven ? 'md:flex-row-reverse' : ''
               } gap-6 md:gap-12 pl-12 md:pl-0`}
             >
-              {/* Timeline Pin Indicator */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-4 z-10 w-8 h-8 rounded-full bg-[#1A1412] border-2 border-[#E5C590] shadow-[0_0_15px_rgba(197,168,128,0.5)] flex items-center justify-center text-[#E5C590]">
+              {/* Timeline Pin Indicator with scale entrance */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: index * 0.12, ease: luxuryEase }}
+                className="absolute left-4 md:left-1/2 -translate-x-1/2 top-4 z-10 w-8 h-8 rounded-full bg-[#1A1412] border-2 border-[#E5C590] shadow-[0_0_15px_rgba(197,168,128,0.6)] flex items-center justify-center text-[#E5C590]"
+              >
                 <Building2 className="w-4 h-4" />
-              </div>
+              </motion.div>
 
-              {/* Timeline Card */}
-              <div className={`w-full md:w-1/2 ${isEven ? 'md:text-left' : 'md:text-left'}`}>
-                <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/25 hover:border-[#C5A880]/50 transition-all duration-300 shadow-xl group">
+              {/* Timeline Card with Directional Entrance */}
+              <motion.div
+                initial={{ opacity: 0, x: isEven ? 40 : -40, y: 15 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.7, delay: index * 0.1, ease: luxuryEase }}
+                className={`w-full md:w-1/2 ${isEven ? 'md:text-left' : 'md:text-left'}`}
+              >
+                <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/25 hover:border-[#C5A880]/55 hover:-translate-y-1 transition-all duration-300 shadow-xl group">
                   {/* Period & Badge Header */}
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-1.5 text-xs text-[#E5C590] font-medium tracking-wider">
@@ -83,18 +98,18 @@ export default function Timeline() {
                     {item.coreSkills.map((skill) => (
                       <span
                         key={skill}
-                        className="text-[10px] tracking-wide uppercase px-2.5 py-1 rounded bg-[#14100E] border border-[#C5A880]/20 text-[#CFC0A8]"
+                        className="text-[10px] tracking-wide uppercase px-2.5 py-1 rounded bg-[#14100E] border border-[#C5A880]/20 text-[#CFC0A8] hover:border-[#C5A880]/50 hover:text-[#FDFBF7] transition-colors"
                       >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Empty counterpart for balance on desktop */}
               <div className="hidden md:block w-1/2" />
-            </motion.div>
+            </div>
           );
         })}
       </div>

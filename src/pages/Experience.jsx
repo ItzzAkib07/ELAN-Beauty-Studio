@@ -1,6 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Briefcase, Award, GraduationCap, CheckCircle2, Building2, Sparkles, MapPin, Calendar, TrendingUp } from 'lucide-react';
 import SEO from '../seo/SEO';
 import { getPersonSchema, getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
@@ -8,6 +6,7 @@ import Timeline from '../components/experience/Timeline';
 import CompetencyMatrix from '../components/experience/CompetencyMatrix';
 import EducationSection from '../components/experience/EducationSection';
 import Button from '../components/common/Button';
+import { Reveal } from '../components/animations/Reveal';
 
 export default function Experience() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -31,15 +30,21 @@ export default function Experience() {
       {/* Page Hero Header */}
       <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-            Professional Career History
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-            My Experience
-          </h1>
-          <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-            A journey shaped by artistry, experience and an eye for detail.
-          </p>
+          <Reveal direction="down" distance={15}>
+            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
+              Professional Career History
+            </span>
+          </Reveal>
+          <Reveal direction="up" delay={0.1} distance={25}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
+              My Experience
+            </h1>
+          </Reveal>
+          <Reveal direction="up" delay={0.2} distance={20}>
+            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
+              A journey shaped by artistry, experience and an eye for detail.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -47,7 +52,7 @@ export default function Experience() {
       <section className="py-20 sm:py-28 bg-[#14100E]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Executive Overview Banner */}
-          <div className="mb-20 glass-panel p-8 sm:p-10 rounded-sm border border-[#C5A880]/30 shadow-xl max-w-5xl mx-auto">
+          <Reveal direction="up" distance={30} className="mb-20 glass-panel p-8 sm:p-10 rounded-sm border border-[#C5A880]/30 shadow-xl max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-6 justify-between">
               <div className="space-y-2 text-center md:text-left">
                 <span className="text-xs uppercase tracking-widest text-[#C5A880] font-semibold">
@@ -67,7 +72,7 @@ export default function Experience() {
                 </Button>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Vertical Interactive Career Timeline */}
           <div className="mb-28">

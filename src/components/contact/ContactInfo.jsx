@@ -1,14 +1,15 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock, ShieldCheck, Sparkles } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { WhatsAppIcon } from '../common/SocialIcons';
 import { siteConfig } from '../../config/siteConfig';
 import Button from '../common/Button';
+import { Reveal } from '../animations/Reveal';
 
 export default function ContactInfo() {
   return (
     <div className="space-y-8">
       {/* Studio Header Card */}
-      <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 shadow-xl space-y-6">
+      <Reveal direction="right" distance={25} className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 shadow-xl space-y-6">
         <div>
           <span className="text-[11px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold block mb-1">
             Studio Information
@@ -79,10 +80,10 @@ export default function ContactInfo() {
             Direct WhatsApp Message
           </Button>
         </div>
-      </div>
+      </Reveal>
 
       {/* Trust & Hygiene Assurance Card */}
-      <div className="p-6 rounded-sm bg-[#1E1815] border border-[#C5A880]/20 space-y-3">
+      <Reveal direction="right" delay={0.15} distance={20} className="p-6 rounded-sm bg-[#1E1815] border border-[#C5A880]/20 space-y-3 shadow-lg">
         <div className="flex items-center gap-2 text-xs font-semibold text-[#E5C590]">
           <ShieldCheck className="w-4 h-4 text-[#C5A880]" />
           <span>Professional Service Assurance</span>
@@ -90,7 +91,7 @@ export default function ContactInfo() {
         <p className="text-xs text-[#CFC0A8] font-light leading-relaxed">
           All brushes and cosmetic stations undergo rigorous medical-grade sanitization between clients. Luxury authentic cosmetics sourced directly from authorized brand ateliers.
         </p>
-      </div>
+      </Reveal>
     </div>
   );
 }

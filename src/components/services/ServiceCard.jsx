@@ -1,25 +1,30 @@
 import React from 'react';
-import { Clock, CheckCircle2, Sparkles, ArrowRight, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Clock, CheckCircle2, Calendar } from 'lucide-react';
 import Button from '../common/Button';
-import Badge from '../common/Badge';
+import { luxuryEase } from '../animations/Reveal';
 
-export default function ServiceCard({ service }) {
+export default function ServiceCard({ service, index = 0 }) {
   return (
-    <div
+    <motion.div
       id={service.id}
-      className={`glass-panel rounded-sm overflow-hidden border transition-all duration-300 flex flex-col justify-between ${
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.6, delay: (index % 3) * 0.1, ease: luxuryEase }}
+      className={`glass-panel rounded-sm overflow-hidden border transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 shadow-xl ${
         service.popular
           ? 'border-[#E5C590]/50 shadow-[0_0_30px_rgba(197,168,128,0.15)] ring-1 ring-[#C5A880]/30'
-          : 'border-[#C5A880]/20 hover:border-[#C5A880]/40'
+          : 'border-[#C5A880]/20 hover:border-[#C5A880]/50'
       }`}
     >
       <div>
         {/* Service Image Header */}
-        <div className="relative aspect-[16/9] overflow-hidden">
+        <div className="relative aspect-[16/9] overflow-hidden group">
           <img
             src={service.image}
             alt={service.title}
-            className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-cover object-top group-hover:scale-108 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#14100E] via-[#14100E]/30 to-transparent" />
 
@@ -93,6 +98,6 @@ export default function ServiceCard({ service }) {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Calendar, Sparkles, ArrowUpRight } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { portfolioCategories, portfolioItems } from '../../data/portfolio';
+import { luxuryEase } from '../animations/Reveal';
 
 export default function PortfolioGrid({ initialCategory = 'all', limit }) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
@@ -20,7 +21,13 @@ export default function PortfolioGrid({ initialCategory = 'all', limit }) {
   return (
     <div className="space-y-10">
       {/* Category Filter Tabs (2 rows x 3 columns on mobile, fluid pill row on sm+) */}
-      <div className="grid grid-cols-3 gap-2 w-full max-w-lg mx-auto sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.6, ease: luxuryEase }}
+        className="grid grid-cols-3 gap-2 w-full max-w-lg mx-auto sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-3"
+      >
         {portfolioCategories.map((cat) => {
           const isActive = selectedCategory === cat.id;
 
@@ -39,23 +46,24 @@ export default function PortfolioGrid({ initialCategory = 'all', limit }) {
             </button>
           );
         })}
-      </div>
+      </motion.div>
 
-      {/* Grid */}
+      {/* Grid with Staggered Entrance */}
       <motion.div
         layout
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
       >
-        <AnimatePresence>
-          {filteredItems.map((item) => (
+        <AnimatePresence mode="popLayout">
+          {filteredItems.map((item, index) => (
             <motion.div
               layout
               key={item.id}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.4 }}
-              className="glass-panel rounded-sm overflow-hidden border border-[#C5A880]/25 hover:border-[#C5A880]/60 transition-all duration-500 shadow-xl group"
+              initial={{ opacity: 0, scale: 0.92, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 15 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: luxuryEase }}
+              className="glass-panel rounded-sm overflow-hidden border border-[#C5A880]/25 hover:border-[#C5A880]/60 hover:-translate-y-1.5 transition-all duration-500 shadow-xl group"
             >
               {/* Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -63,9 +71,9 @@ export default function PortfolioGrid({ initialCategory = 'all', limit }) {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#14100E] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#14100E] via-transparent to-transparent opacity-80" />
 
                 <div className="absolute top-3 left-3">
                   <span className="px-3 py-1 text-[10px] uppercase tracking-widest font-semibold bg-[#14100E]/80 backdrop-blur-md text-[#E5C590] border border-[#C5A880]/30 rounded-full">

@@ -1,22 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ArrowUp, Sparkles, Award, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ArrowUp, Sparkles, Heart } from 'lucide-react';
 import { InstagramIcon, FacebookIcon, WhatsAppIcon } from '../common/SocialIcons';
 import { siteConfig } from '../../config/siteConfig';
 import { footerLinks } from '../../data/navigation';
+import { StaggerContainer, StaggerItem, Reveal } from '../animations/Reveal';
 
 export default function Footer() {
   const scrollToTop = () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: false });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <footer className="bg-[#0C0A09] text-[#EFE8DC] border-t border-[#C5A880]/20 pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#C5A880]/15">
+        {/* Main Footer Grid with Staggered Entrance */}
+        <StaggerContainer
+          staggerChildren={0.1}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#C5A880]/15"
+        >
           {/* Brand & Artist Profile */}
-          <div className="lg:col-span-2 space-y-5">
+          <StaggerItem direction="up" distance={20} className="lg:col-span-2 space-y-5">
             <Link to="/" className="inline-block">
               <span className="font-serif text-3xl tracking-[0.2em] font-semibold text-[#FDFBF7]">
                 ÉLAN
@@ -72,10 +79,10 @@ export default function Footer() {
                 <FacebookIcon className="w-4 h-4" />
               </a>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Quick Navigation */}
-          <div>
+          <StaggerItem direction="up" distance={20}>
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FDFBF7] mb-4 pb-2 border-b border-[#C5A880]/20">
               Studio Navigation
             </h3>
@@ -91,10 +98,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Services */}
-          <div>
+          <StaggerItem direction="up" distance={20}>
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FDFBF7] mb-4 pb-2 border-b border-[#C5A880]/20">
               Artistry & Services
             </h3>
@@ -110,10 +117,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Studio Contact & Hours */}
-          <div className="space-y-4">
+          <StaggerItem direction="up" distance={20} className="space-y-4">
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FDFBF7] mb-4 pb-2 border-b border-[#C5A880]/20">
               Studio & Contact
             </h3>
@@ -146,11 +153,11 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-[#A8A19A]">
+        <Reveal direction="up" distance={15} delay={0.2} className="pt-8 flex flex-col md:flex-row items-center justify-between gap-5 text-xs text-[#A8A19A]">
           <p className="text-center md:text-left">
             © {new Date().getFullYear()} {siteConfig.businessName}. All rights reserved.
           </p>
@@ -184,7 +191,7 @@ export default function Footer() {
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
-        </div>
+        </Reveal>
       </div>
     </footer>
   );

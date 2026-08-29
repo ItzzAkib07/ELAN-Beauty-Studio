@@ -4,6 +4,7 @@ import { Eye, Sparkles, ZoomIn, ArrowRight } from 'lucide-react';
 import { makeupCategories, makeupGallery } from '../../data/makeup';
 import Lightbox from '../common/Lightbox';
 import Button from '../common/Button';
+import { luxuryEase } from '../animations/Reveal';
 
 export default function MakeupGallery({ initialCategory = 'all', limit, showFilter = true }) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
@@ -39,7 +40,13 @@ export default function MakeupGallery({ initialCategory = 'all', limit, showFilt
     <div className="space-y-10">
       {/* Category Filter Tabs (2 rows x 3 columns on mobile, fluid pill row on sm+) */}
       {showFilter && (
-        <div className="grid grid-cols-3 gap-2 w-full max-w-lg mx-auto sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, ease: luxuryEase }}
+          className="grid grid-cols-3 gap-2 w-full max-w-lg mx-auto sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-3"
+        >
           {makeupCategories.map((cat) => {
             const isActive = selectedCategory === cat.id;
 
@@ -58,23 +65,24 @@ export default function MakeupGallery({ initialCategory = 'all', limit, showFilt
               </button>
             );
           })}
-        </div>
+        </motion.div>
       )}
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid with Staggered Entrance */}
       <motion.div
         layout
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {filteredGallery.map((item, index) => (
             <motion.div
               layout
               key={item.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, scale: 0.92, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 15 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: luxuryEase }}
               className="group relative overflow-hidden rounded-sm border border-[#C5A880]/25 bg-[#1E1815] shadow-xl hover:border-[#C5A880]/60 transition-all duration-500 cursor-pointer"
               onClick={() => handleOpenLightbox(index)}
             >

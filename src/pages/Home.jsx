@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ChevronDown, CheckCircle2, ShieldCheck, Heart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react';
 import SEO from '../seo/SEO';
 import { getSalonSchema, getPersonSchema } from '../seo/jsonLdSchemas';
 import HeroSection from '../components/hero/HeroSection';
@@ -15,7 +15,7 @@ import TestimonialCarousel from '../components/testimonials/TestimonialCarousel'
 import { transformationData } from '../data/makeup';
 import { servicesList } from '../data/services';
 import { faqsList } from '../data/faq';
-import { careerTimeline } from '../data/experience';
+import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
 
 export default function Home() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
@@ -64,11 +64,11 @@ export default function Home() {
 
           <MakeupGallery limit={6} showFilter={true} />
 
-          <div className="mt-12 text-center">
+          <Reveal direction="up" delay={0.2} className="mt-12 text-center">
             <Button to="/makeup" variant="secondary" size="lg" icon={ArrowRight}>
               Explore Full Makeup Portfolio
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -82,17 +82,17 @@ export default function Home() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
-            <div className="lg:col-span-8">
+            <Reveal direction="right" distance={30} className="lg:col-span-8">
               <BeforeAfterSlider
                 beforeImage={transformationData.beforeImage}
                 afterImage={transformationData.afterImage}
                 beforeLabel={transformationData.beforeLabel}
                 afterLabel={transformationData.afterLabel}
               />
-            </div>
+            </Reveal>
 
-            <div className="lg:col-span-4 space-y-6">
-              <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 space-y-4">
+            <Reveal direction="left" distance={30} delay={0.15} className="lg:col-span-4 space-y-6">
+              <div className="glass-panel p-6 sm:p-8 rounded-sm border border-[#C5A880]/30 space-y-4 shadow-xl">
                 <span className="text-xs uppercase tracking-widest text-[#C5A880] font-semibold block">
                   Artistry Philosophy
                 </span>
@@ -121,7 +121,7 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -136,16 +136,16 @@ export default function Home() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {servicesList.slice(0, 3).map((service) => (
-              <ServiceCard key={service.id} service={service} />
+            {servicesList.slice(0, 3).map((service, idx) => (
+              <ServiceCard key={service.id} service={service} index={idx} />
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <Reveal direction="up" delay={0.2} className="mt-12 text-center">
             <Button to="/services" variant="secondary" size="lg" icon={ArrowRight}>
               View All Services & Packages
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -153,7 +153,7 @@ export default function Home() {
       <section className="py-20 sm:py-24 bg-gradient-to-r from-[#1E1815] via-[#14100E] to-[#1E1815] border-t border-b border-[#C5A880]/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
+            <Reveal direction="right" distance={30} className="lg:col-span-7 space-y-4">
               <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
                 7+ Years Salon Leadership in Pune
               </span>
@@ -163,16 +163,16 @@ export default function Home() {
               <p className="text-xs sm:text-sm text-[#CFC0A8] font-light leading-relaxed">
                 Directing multi-branch operations at <strong>Ally21 Salon (Baner & Aundh)</strong>, <strong>Studio 11 Family Salon</strong>, <strong>Monsoon Salon</strong>, and <strong>Looks Salon</strong> with over 100+ luxury bridal transformations delivered.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="lg:col-span-5 flex flex-col sm:flex-row items-center justify-start lg:justify-end gap-4">
+            <Reveal direction="left" distance={30} delay={0.15} className="lg:col-span-5 flex flex-col sm:flex-row items-center justify-start lg:justify-end gap-4">
               <Button to="/experience" variant="primary" size="md" icon={ArrowRight}>
                 View Career Timeline
               </Button>
               <Button to="/portfolio" variant="secondary" size="md">
                 View Portfolio
               </Button>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -198,14 +198,16 @@ export default function Home() {
             subtitle="Everything you need to know about booking, bridal consultations, and our artistry process."
           />
 
-          <div className="space-y-4">
+          <StaggerContainer staggerChildren={0.08} className="space-y-4">
             {faqsList.map((faq, index) => {
               const isOpen = openFaqIndex === index;
 
               return (
-                <div
+                <StaggerItem
                   key={faq.question}
-                  className="rounded-sm border border-[#C5A880]/20 bg-[#1A1412] overflow-hidden transition-colors"
+                  direction="up"
+                  distance={15}
+                  className="rounded-sm border border-[#C5A880]/20 bg-[#1A1412] overflow-hidden transition-colors hover:border-[#C5A880]/40 shadow-md"
                 >
                   <button
                     type="button"
@@ -223,21 +225,25 @@ export default function Home() {
                     />
                   </button>
 
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-[#CFC0A8] font-light leading-relaxed border-t border-[#C5A880]/10 pt-4"
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: luxuryEase }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 sm:px-6 pb-5 text-xs sm:text-sm text-[#CFC0A8] font-light leading-relaxed border-t border-[#C5A880]/10 pt-4">
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
     </>
