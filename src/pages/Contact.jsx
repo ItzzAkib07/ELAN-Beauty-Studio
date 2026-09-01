@@ -7,7 +7,9 @@ import SectionHeading from '../components/common/SectionHeading';
 import BookingForm from '../components/contact/BookingForm';
 import ContactInfo from '../components/contact/ContactInfo';
 import { faqsList } from '../data/faq';
-import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
+import { StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
+import PageHeader from '../components/common/PageHeader';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Contact() {
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
@@ -30,30 +32,19 @@ export default function Contact() {
         }}
       />
 
-      {/* Page Hero Header */}
-      <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Reveal direction="down" distance={15}>
-            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-              Appointments & Inquiries
-            </span>
-          </Reveal>
-          <Reveal direction="up" delay={0.1} distance={25}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-              Book an Appointment
-            </h1>
-          </Reveal>
-          <Reveal direction="up" delay={0.2} distance={20}>
-            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-              Reserve your bespoke beauty session or salon operations consultation in Pune.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Page Hero Header with Interactive Stardust */}
+      <PageHeader
+        eyebrow="Appointments & Inquiries"
+        title="Book an Appointment"
+        subtitle="Reserve your bespoke beauty session or salon operations consultation in Pune."
+      />
 
       {/* Main Contact Grid */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        {/* Warm Rose-Amber & Champagne Interactive Background */}
+        <SectionBackground variant="rose-amber" density={28} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Booking Form Column */}
             <div className="lg:col-span-7">
@@ -69,8 +60,9 @@ export default function Contact() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 sm:py-28 bg-[#110E0C] border-t border-[#C5A880]/20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#110E0C] relative overflow-hidden border-t border-[#C5A880]/20">
+        <SectionBackground variant="minimal-shimmer" density={18} />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Booking Guidance"
             title="Frequently Asked Questions"

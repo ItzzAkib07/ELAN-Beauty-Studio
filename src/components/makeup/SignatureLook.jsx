@@ -5,14 +5,15 @@ import { signatureLook } from '../../data/makeup';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
 import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../animations/Reveal';
+import SectionBackground from '../backgrounds/SectionBackground';
 
 export default function SignatureLook({ onOpenLook }) {
   return (
     <div className="relative glass-panel rounded-sm p-6 sm:p-10 lg:p-12 border border-[#C5A880]/30 shadow-2xl overflow-hidden">
-      {/* Background ambient gold gradient */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A880]/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Interactive Constellation & Ambient Light Glow */}
+      <SectionBackground variant="constellation" density={32} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
         {/* Featured Image Column */}
         <Reveal direction="right" distance={30} className="lg:col-span-6 relative group">
           <div className="relative overflow-hidden rounded-sm border border-[#C5A880]/40 shadow-2xl">

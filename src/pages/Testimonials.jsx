@@ -5,7 +5,9 @@ import { getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
 import TestimonialCarousel from '../components/testimonials/TestimonialCarousel';
 import { testimonialsList } from '../data/testimonials';
-import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
+import { StaggerContainer, StaggerItem } from '../components/animations/Reveal';
+import PageHeader from '../components/common/PageHeader';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Testimonials() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -22,30 +24,19 @@ export default function Testimonials() {
         structuredData={breadcrumbData}
       />
 
-      {/* Page Hero Header */}
-      <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Reveal direction="down" distance={15}>
-            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-              Client Words & Experiences
-            </span>
-          </Reveal>
-          <Reveal direction="up" delay={0.1} distance={25}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-              Testimonials
-            </h1>
-          </Reveal>
-          <Reveal direction="up" delay={0.2} distance={20}>
-            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-              Heartfelt words from brides and clients who trusted Sakshi Choudhry with their special celebrations.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Page Hero Header with Interactive Stardust */}
+      <PageHeader
+        eyebrow="Client Words & Experiences"
+        title="Testimonials"
+        subtitle="Heartfelt words from brides and clients who trusted Sakshi Choudhry with their special celebrations."
+      />
 
       {/* Featured Carousel Section */}
-      <section className="py-20 sm:py-24 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24 bg-[#14100E] relative overflow-hidden">
+        {/* Interactive Luminous Bokeh Background */}
+        <SectionBackground variant="luminous-bokeh" density={22} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Featured Praise"
             title="Voices of Elegance"
@@ -56,8 +47,11 @@ export default function Testimonials() {
       </section>
 
       {/* Full Testimonials Grid */}
-      <section className="py-20 sm:py-28 bg-[#181210] border-t border-[#C5A880]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#181210] relative overflow-hidden border-t border-[#C5A880]/20">
+        {/* Warm Rose-Amber Atmosphere */}
+        <SectionBackground variant="rose-amber" density={24} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Client Archive"
             title="All Verified Reviews"

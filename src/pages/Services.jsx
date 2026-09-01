@@ -7,6 +7,8 @@ import { servicesList } from '../data/services';
 import Button from '../components/common/Button';
 import { siteConfig } from '../../src/config/siteConfig';
 import { Reveal } from '../components/animations/Reveal';
+import PageHeader from '../components/common/PageHeader';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Services() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -23,30 +25,19 @@ export default function Services() {
         structuredData={breadcrumbData}
       />
 
-      {/* Page Hero Header */}
-      <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Reveal direction="down" distance={15}>
-            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-              Bespoke Offerings
-            </span>
-          </Reveal>
-          <Reveal direction="up" delay={0.1} distance={25}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-              Services & Packages
-            </h1>
-          </Reveal>
-          <Reveal direction="up" delay={0.2} distance={20}>
-            <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-              Refined makeup artistry, hair sculpting, and luxury salon operational consulting crafted with precision and care.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Page Hero Header with Interactive Stardust */}
+      <PageHeader
+        eyebrow="Bespoke Offerings"
+        title="Services & Packages"
+        subtitle="Refined makeup artistry, hair sculpting, and luxury salon operational consulting crafted with precision and care."
+      />
 
       {/* Services Grid with Staggered Entrance */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        {/* Interactive Geometric Gold Matrix */}
+        <SectionBackground variant="geometric-gold" density={30} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servicesList.map((service, idx) => (
               <ServiceCard key={service.id} service={service} index={idx} />

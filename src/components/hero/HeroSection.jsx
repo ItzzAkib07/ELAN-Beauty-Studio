@@ -5,6 +5,7 @@ import Button from '../common/Button';
 import heroImg from '../../assets/images/hero-editorial-elan.jpg';
 import { siteConfig } from '../../config/siteConfig';
 import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../animations/Reveal';
+import SectionBackground from '../backgrounds/SectionBackground';
 
 export default function HeroSection() {
   return (
@@ -24,6 +25,8 @@ export default function HeroSection() {
         {/* Gradients to blend image seamlessly with espresso theme */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#14100E] via-[#14100E]/55 to-[#14100E]/80" />
         <div className="absolute inset-0 bg-radial from-transparent via-[#14100E]/40 to-[#14100E]/90" />
+        {/* Interactive Stardust & Floating Gold Auroras */}
+        <SectionBackground variant="hero-dust" density={48} />
       </div>
 
       {/* Vertical Side Editorial Label */}

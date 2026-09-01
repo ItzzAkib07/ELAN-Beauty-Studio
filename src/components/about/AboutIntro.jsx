@@ -6,11 +6,15 @@ import Button from '../common/Button';
 import portraitImg from '../../assets/images/artist-portrait-sakshi.jpeg';
 import { siteConfig } from '../../config/siteConfig';
 import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../animations/Reveal';
+import SectionBackground from '../backgrounds/SectionBackground';
 
 export default function AboutIntro({ showFullDetails = false }) {
   return (
     <section className="py-20 sm:py-28 bg-[#14100E] text-[#F7F3EB] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Interactive Silk Waves & Ambient Orbs Background */}
+      <SectionBackground variant="silk-contour" density={28} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           eyebrow="The Artist Behind ÉLAN"
           title="Sakshi Choudhry"

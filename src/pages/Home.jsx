@@ -16,6 +16,7 @@ import { transformationData } from '../data/makeup';
 import { servicesList } from '../data/services';
 import { faqsList } from '../data/faq';
 import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../components/animations/Reveal';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Home() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
@@ -42,8 +43,9 @@ export default function Home() {
       <AboutIntro />
 
       {/* Signature Look Showcase */}
-      <section className="py-20 sm:py-24 bg-[#110E0C] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24 bg-[#110E0C] relative overflow-hidden">
+        <SectionBackground variant="constellation" density={28} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Signature Masterpiece"
             title="The Art of Refinement"
@@ -54,8 +56,9 @@ export default function Home() {
       </section>
 
       {/* My Makeup Artistry Highlights Gallery */}
-      <section className="py-20 sm:py-28 bg-[#14100E] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        <SectionBackground variant="stardust" density={34} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="My Makeup"
             title="A Gallery of Transformations"
@@ -73,8 +76,9 @@ export default function Home() {
       </section>
 
       {/* The Transformation (Before / After Comparison Slider) */}
-      <section className="py-20 sm:py-28 bg-[#181210] relative border-t border-b border-[#C5A880]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#181210] relative overflow-hidden border-t border-b border-[#C5A880]/20">
+        <SectionBackground variant="dual-glow" density={30} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="The Transformation"
             title="Enhancing Your Innate Glow"
@@ -127,8 +131,9 @@ export default function Home() {
       </section>
 
       {/* Services Highlights Preview */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        <SectionBackground variant="geometric-gold" density={28} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Bespoke Offerings"
             title="Curated Beauty Services"
@@ -150,8 +155,9 @@ export default function Home() {
       </section>
 
       {/* Experience Preview Banner */}
-      <section className="py-20 sm:py-24 bg-gradient-to-r from-[#1E1815] via-[#14100E] to-[#1E1815] border-t border-b border-[#C5A880]/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24 bg-gradient-to-r from-[#1E1815] via-[#14100E] to-[#1E1815] relative overflow-hidden border-t border-b border-[#C5A880]/20">
+        <SectionBackground variant="radiant-aura" density={30} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <Reveal direction="right" distance={30} className="lg:col-span-7 space-y-4">
               <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
@@ -178,8 +184,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Carousel */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        <SectionBackground variant="luminous-bokeh" density={22} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Client Love & Words"
             title="Kind Words from Brides & Clients"
@@ -190,8 +197,9 @@ export default function Home() {
       </section>
 
       {/* Frequently Asked Questions (Accordion) */}
-      <section className="py-20 sm:py-28 bg-[#110E0C] border-t border-[#C5A880]/15">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#110E0C] relative overflow-hidden border-t border-[#C5A880]/15">
+        <SectionBackground variant="minimal-shimmer" density={18} />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="FAQ"
             title="Frequently Asked Questions"
@@ -249,3 +257,4 @@ export default function Home() {
     </>
   );
 }
+

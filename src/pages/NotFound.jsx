@@ -1,7 +1,8 @@
 import React from 'react';
-import { Home, ArrowLeft, Sparkles } from 'lucide-react';
+import { Home, Sparkles } from 'lucide-react';
 import SEO from '../seo/SEO';
 import Button from '../components/common/Button';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function NotFound() {
   return (
@@ -12,8 +13,10 @@ export default function NotFound() {
         noIndex={true}
       />
 
-      <div className="min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 text-center">
-        <div className="max-w-lg glass-panel p-8 sm:p-12 rounded-sm border border-[#C5A880]/30 shadow-2xl space-y-6">
+      <div className="relative min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 text-center overflow-hidden">
+        <SectionBackground variant="hero-dust" density={36} />
+
+        <div className="relative z-10 max-w-lg glass-panel p-8 sm:p-12 rounded-sm border border-[#C5A880]/30 shadow-2xl space-y-6">
           <div className="w-16 h-16 rounded-full bg-[#C5A880]/10 border border-[#C5A880]/40 flex items-center justify-center mx-auto text-[#E5C590]">
             <Sparkles className="w-8 h-8" />
           </div>
@@ -43,3 +46,4 @@ export default function NotFound() {
     </>
   );
 }
+

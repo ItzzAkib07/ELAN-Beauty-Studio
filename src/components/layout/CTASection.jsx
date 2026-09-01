@@ -4,6 +4,7 @@ import Button from '../common/Button';
 import { Calendar, Sparkles, MessageCircle } from 'lucide-react';
 import { siteConfig } from '../../config/siteConfig';
 import { Reveal, StaggerContainer, StaggerItem, luxuryEase } from '../animations/Reveal';
+import SectionBackground from '../backgrounds/SectionBackground';
 
 export default function CTASection({
   title = "Your Moment.\nYour Beauty.\nYour ÉLAN.",
@@ -13,15 +14,8 @@ export default function CTASection({
 }) {
   return (
     <section className={`relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-[#14100E] via-[#1E1815] to-[#14100E] border-t border-b border-[#C5A880]/20 ${className}`}>
-      {/* Subtle background ambient glow with gentle breathing animation */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.05, 0.1, 0.05]
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#C5A880] rounded-full blur-[140px] pointer-events-none"
-      />
+      {/* Interactive Radiant Aura & Embers Background */}
+      <SectionBackground variant="radiant-aura" density={36} />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
         <Reveal direction="up" distance={20}>

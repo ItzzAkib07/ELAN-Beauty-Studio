@@ -3,6 +3,8 @@ import SEO from '../seo/SEO';
 import { getBreadcrumbSchema } from '../seo/jsonLdSchemas';
 import SectionHeading from '../components/common/SectionHeading';
 import PortfolioGrid from '../components/portfolio/PortfolioGrid';
+import PageHeader from '../components/common/PageHeader';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Portfolio() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -19,27 +21,23 @@ export default function Portfolio() {
         structuredData={breadcrumbData}
       />
 
-      {/* Page Hero Header */}
-      <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-            Body of Work
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-            Professional Portfolio
-          </h1>
-          <p className="text-sm sm:text-base text-[#CFC0A8] font-light max-w-xl mx-auto">
-            A curated showcase spanning bridal elegance, editorial campaigns, luxury salon spaces, and aesthetic brand direction.
-          </p>
-        </div>
-      </section>
+      {/* Page Hero Header with Interactive Stardust */}
+      <PageHeader
+        eyebrow="Body of Work"
+        title="Professional Portfolio"
+        subtitle="A curated showcase spanning bridal elegance, editorial campaigns, luxury salon spaces, and aesthetic brand direction."
+      />
 
       {/* Portfolio Content */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        {/* Interactive Luminous Bokeh Background */}
+        <SectionBackground variant="luminous-bokeh" density={24} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <PortfolioGrid />
         </div>
       </section>
     </>
   );
 }
+

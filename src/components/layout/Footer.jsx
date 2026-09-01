@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, ArrowUp, Sparkles, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ArrowUp } from 'lucide-react';
 import { InstagramIcon, FacebookIcon, WhatsAppIcon } from '../common/SocialIcons';
 import { siteConfig } from '../../config/siteConfig';
 import { footerLinks } from '../../data/navigation';
 import { StaggerContainer, StaggerItem, Reveal } from '../animations/Reveal';
+import PortfolioCreditBadge from './PortfolioCreditBadge';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -163,25 +164,7 @@ export default function Footer() {
           </p>
 
           {/* Crafted with love by Akib credit badge */}
-          <a
-            href={siteConfig.developer.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#181210] border border-[#C5A880]/25 hover:border-[#E5C590]/60 text-[#CFC0A8] hover:text-[#FDFBF7] transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(197,168,128,0.25)] hover:scale-[1.03]"
-            aria-label="Developer Portfolio: Akib"
-          >
-            <span className="text-[11px] tracking-wider text-[#A8A19A] group-hover:text-[#CFC0A8] transition-colors">
-              Crafted with
-            </span>
-            <Heart className="w-3.5 h-3.5 text-[#E5C590] fill-[#E5C590] group-hover:scale-125 transition-transform duration-300 animate-pulse" />
-            <span className="text-[11px] tracking-wider text-[#A8A19A] group-hover:text-[#CFC0A8] transition-colors">
-              by
-            </span>
-            <span className="text-[11px] font-semibold text-[#E5C590] group-hover:text-[#FDFBF7] transition-colors underline decoration-[#C5A880]/40 group-hover:decoration-[#E5C590] underline-offset-2">
-              Akib
-            </span>
-            <Sparkles className="w-3 h-3 text-[#E5C590] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </a>
+          <PortfolioCreditBadge />
 
           <button
             onClick={scrollToTop}

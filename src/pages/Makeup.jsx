@@ -9,6 +9,8 @@ import BeforeAfterSlider from '../components/common/BeforeAfterSlider';
 import { transformationData } from '../data/makeup';
 import Button from '../components/common/Button';
 import { Reveal } from '../components/animations/Reveal';
+import PageHeader from '../components/common/PageHeader';
+import SectionBackground from '../components/backgrounds/SectionBackground';
 
 export default function Makeup() {
   const breadcrumbData = getBreadcrumbSchema([
@@ -25,30 +27,17 @@ export default function Makeup() {
         structuredData={breadcrumbData}
       />
 
-      {/* Page Hero Header */}
-      <section className="py-16 sm:py-24 bg-[#110E0C] border-b border-[#C5A880]/20 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Reveal direction="down" distance={15}>
-            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-3">
-              Signature Visual Masterclass
-            </span>
-          </Reveal>
-          <Reveal direction="up" delay={0.1} distance={25}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#FDFBF7] tracking-tight mb-4">
-              My Makeup
-            </h1>
-          </Reveal>
-          <Reveal direction="up" delay={0.2} distance={20}>
-            <p className="text-sm sm:text-base md:text-lg text-[#CFC0A8] font-light max-w-2xl mx-auto">
-              Every face is different. Every look begins with understanding what makes you uniquely beautiful.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Page Hero Header with Interactive Stardust */}
+      <PageHeader
+        eyebrow="Signature Visual Masterclass"
+        title="My Makeup"
+        subtitle="Every face is different. Every look begins with understanding what makes you uniquely beautiful."
+      />
 
       {/* Featured Signature Look */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        <SectionBackground variant="constellation" density={28} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Signature Look"
             title="The ÉLAN Royal Standard"
@@ -59,8 +48,9 @@ export default function Makeup() {
       </section>
 
       {/* Interactive Transformation Comparison Section */}
-      <section className="py-20 sm:py-28 bg-[#181210] border-t border-b border-[#C5A880]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#181210] relative overflow-hidden border-t border-b border-[#C5A880]/20">
+        <SectionBackground variant="dual-glow" density={30} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="The Transformation"
             title="Before & After"
@@ -121,8 +111,9 @@ export default function Makeup() {
       </section>
 
       {/* Main Filterable Gallery */}
-      <section className="py-20 sm:py-28 bg-[#14100E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-[#14100E] relative overflow-hidden">
+        <SectionBackground variant="luminous-bokeh" density={24} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             eyebrow="Curated Portfolio"
             title="Explore Makeup Categories"
@@ -134,3 +125,4 @@ export default function Makeup() {
     </>
   );
 }
+
